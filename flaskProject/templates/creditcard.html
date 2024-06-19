@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card</title>
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+    text-decoration: none;
+
+}body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('static/cards.jpg');
+    background-repeat: no-repeat;
+   margin: 0;
+}
+.container{
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #ffffff;
+    opacity: 0.8;
+    border-radius: 20px;
+    box-shadow: 0 2px 20px 0px black;
+}
+.boxes{
+    height: 550px;
+    width: 550px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #ffffff;
+    opacity: 0.8;
+    box-shadow: 0 2px 20px 0px black;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.credit{
+    font-size: 30px;
+    font-weight: bolder;
+    margin-bottom: 50px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+label{
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 0;
+}
+textarea{
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid black;
+    border-radius: 20px;
+    resize: vertical;
+    font-size: 20px;
+    font-weight: bolder;
+}
+input{
+padding: 10px 20px;
+margin-top: 10px;
+border: 2px solid gray;
+border-radius: 17px;
+font-weight: bolder;
+font-size: larger;
+background-color: rgb(5, 201, 255);
+width: 80%;
+height: 45px;
+}
+p{
+    margin-top: 20px;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px){
+    .container{
+        width: 95%;
+        max-width: none;
+    }
+    .boxes{
+         padding-top: 40px;
+         padding-bottom: 60px;
+         padding-left: 30px;
+         padding-right: 30px;
+    }
+}
+</style>
+<body>
+    <main>
+        <div class="boxes">
+            <div class="credit">Credit Card Fraud Detector</div>
+            <form action="/credit_predict" method="post">
+               <label for="details">Enter your details here: -</label>
+               <textarea name="card_content" id="card_content" cols="30" rows="10" required></textarea>
+               <input type="submit" value="Predict">
+            </form>
+             {% if credit_prediction %}
+                <p><strong>It is a {{ credit_prediction }}</strong>.</p>
+            {% elif error %}
+                <p>{{ error }}</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>
